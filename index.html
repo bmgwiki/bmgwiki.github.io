@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki BMG</title>
+    <!-- Ícono de la pestaña -->
+    <link rel="icon" href="logito.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+        header {
+            background-color: #000; /* Fondo negro */
+            text-align: center;
+            padding: 1rem;
+            animation: slideIn 1s ease-out;
+        }
+        header .title-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header h1 {
+            font-family: Arial, 'Segoe UI', Tahoma, Verdana, sans-serif;
+            color: #fff;
+            font-size: 2rem;
+            margin: 0;
+        }
+        header img {
+            width: 90px; /* Tamaño pequeño para la imagen */
+            height: auto;
+            margin-left: 2px; /* Separación entre texto y imagen */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 2rem;
+            animation: containerAnimation 2s ease-in-out;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            width: 250px;
+            margin-bottom: 2rem;
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: cardAnimation 1s ease-in-out forwards;
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            perspective: 1000px; /* Para el efecto 3D */
+        }
+        .card:hover {
+            transform: scale(1.1) rotateY(10deg) rotateX(10deg); /* Efecto 3D al hacer hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .card img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .card img:hover {
+            transform: scale(1.1) rotateY(10deg) rotateX(10deg); /* Efecto 3D al hacer hover */
+        }
+        .card h3 {
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            color: #333;
+            animation: fadeInText 1s ease-out;
+        }
+        .card p {
+            padding: 0 1rem;
+            font-size: 1rem;
+            color: #555;
+            animation: fadeInText 1s ease-out;
+        }
+        footer {
+            background-color: #000; /* Fondo negro para footer */
+            color: #fff; /* Texto blanco */
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            animation: slideInFooter 1s ease-out;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 2rem;
+            color: #333;
+        }
+        .secret-logo {
+            display: block;
+            margin: 0 auto;
+            width: 184px;
+            height: auto;
+            filter: grayscale(100%);
+            transition: opacity 0.3s ease-in-out;
+        }
+        .secret-logo:hover {
+            opacity: 0.7;
+        }
+        .card img.clicked {
+            transform: scale(1.5) rotateY(20deg) rotateX(20deg); /* Efecto 3D al hacer clic */
+            z-index: 1000;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-50px);
+            animation: slideDown 0.5s ease-out;
+        }
+        .close {
+            color: #ff6347;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .close:hover,
+        .close:focus {
+            color: #d9534f;
+            text-decoration: none;
+            transform: scale(1.2);
+        }
+        .modal.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            animation: overlayFadeIn 0.3s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes containerAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes cardAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideInFooter {
+            0% {
+                transform: translateY(50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes overlayFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        /* Nueva animación para el efecto 3D */
+        @keyframes popOut {
+            0% {
+                transform: scale(1) rotateY(0) rotateX(0);
+            }
+            50% {
+                transform: scale(1.2) rotateY(20deg) rotateX(20deg);
+            }
+            100% {
+                transform: scale(1) rotateY(0) rotateX(0);
+            }
+        }
+        .card:active {
+            animation: popOut 0.5s ease-in-out; /* Efecto 3D al hacer clic */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="title-container">
+        <h1>Wiki</h1>
+        <img src="bmg.png" alt="Logo Wiki Wijki">
+    </div>
+</header>
+
+<!-- Sección de Personajes -->
+<div class="section-title">Personajes</div>
+<div class="container">
+    
+    <!-- Página de Personaje Brauu -->
+    <div class="card" onclick="showInfo('modal-brauu')">
+        <img src="https://s.namemc.com/3d/skin/body.png?id=ae678933771c2d17&model=classic&theta=30&phi=21&time=90&width=600&height=800" alt="Imagen de Brauu">
+        <h3>Brauliomaroto</h3>
+        <p>Brauu viaja a través de diferentes universos buscando regresar a su línea temporal original.</p>
+    </div>
+
+    <!-- Modal con más información -->
+    <div id="modal-brauu" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="showInfo('modal-brauu')">&times;</span>
+            <h3>Información de Brauu</h3>
+            <p><strong>Altura:</strong> 1.80m</p>
+            <p><strong>Años:</strong> 17 años</p>
+            <p><strong>Descripción:</strong> Brauu enfrenta traiciones, miedos y nuevos desafíos. Usa un traje elegante con la corbata medio despuesta, reflejando su estilo único.</p>
+        </div>
+    </div>
+
+    <!-- Página de Personaje ItsAaldotz -->
+    <div class="card" onclick="showInfo('modal-itsAaldotz')">
+        <img src="https://s.namemc.com/3d/skin/body.png?id=30b8b7062dec669f&model=classic&theta=30&phi=21&time=90&width=600&height=800" alt="Imagen de ItsAaldotz">
+        <h3>ItsAaldotz</h3>
+        <p>ItsAaldotz es conocido por su estilo llamativo y personalidad divertida. Con su color amarillo y lentes gigantes, siempre está listo para aportar algo único al universo BMG.</p>
+    </div>
+
+    <!-- Modal con más información de ItsAaldotz -->
+    <div id="modal-itsAaldotz" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="showInfo('modal-itsAaldotz')">&times;</span>
+            <h3>Información de ItsAaldotz</h3>
+            <p><strong>Altura:</strong> 1.75m</p>
+            <p><strong>Años:</strong> 17 años</p>
+            <p><strong>Descripción:</strong> ItsAaldotz es conocido por su estilo llamativo y su personalidad divertida. Con sus ojos demasiados grandes, es el alma de cualquier fiesta, ¡y nunca pasa desapercibido!</p>
+        </div>
+    </div>
+
+    <!-- Página de Personaje Quality_forever_ -->
+    <div class="card" onclick="showInfo('modal-quality_forever_')">
+        <img src="https://s.namemc.com/3d/skin/body.png?id=d4dd7c825da85f4a&model=classic&theta=30&phi=21&time=90&width=600&height=800" alt="Imagen de Quality_forever_">
+        <h3>Quality</h3>
+        <p>Quality_forever_ es conocido por su estilo épico y su actitud positiva. Siempre está dispuesto a enfrentar cualquier desafío con determinación.</p>
+    </div>
+
+    <!-- Modal con más información de Quality_forever_ -->
+    <div id="modal-quality_forever_" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="showInfo('modal-quality_forever_')">&times;</span>
+            <h3>Información de Quality_forever_</h3>
+            <p><strong>Altura:</strong> 1.60m</p>
+            <p><strong>Años:</strong> 15 años</p>
+            <p><strong>Descripción:</strong> Quality_forever_ es un líder natural, siempre enfrentando los desafíos con una sonrisa. Es conocido por su estilo inconfundible y su habilidad para inspirar a los demás con su actitud positiva.</p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Sección de Logo Secreto -->
+<div class="section-title"></div>
+<div class="container">
+    <a href="https://bmgweb.github.io" target="_blank">
+        <img class="secret-logo" src="xd.png" alt="Logo Secreto">
+    </a>
+</div>
+
+<footer>
+    <p>&copy; 2025 Wiki BMG.</p>
+</footer>
+
+<script>
+    // Función para mostrar la información cuando se hace clic en el personaje
+    function showInfo(personaje) {
+        // Obtener el modal del personaje
+        var modal = document.getElementById(personaje);
+
+        // Si el modal ya está visible, lo ocultamos
+        if (modal.style.display === "block") {
+            modal.style.display = "none";
+        } else {
+            // Si el modal está oculto, lo mostramos
+            modal.style.display = "block";
+        }
+    }
+</script>
+
+<script>
+    // Función para aumentar el tamaño de la imagen al hacer clic
+    document.querySelectorAll('.card img').forEach(image => {
+        image.addEventListener('click', function() {
+            // Verificamos si la imagen ya está agrandada
+            if (this.classList.contains('clicked')) {
+                // Si ya está agrandada, la volvemos a su tamaño normal
+                this.classList.remove('clicked');
+            } else {
+                // Si no está agrandada, la agrandamos
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
