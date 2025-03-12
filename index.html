@@ -216,10 +216,16 @@
         transform: scale(1.05);
     }
 
-    /* Media query para pantallas pequeñas */
     @media (max-width: 768px) {
         .card {
-            width: 47%; /* En pantallas más pequeñas, los elementos se ajustan a 2 por fila */
+            width: 100%; /* En pantallas pequeñas, los elementos se ajustan a 2 por fila */
+        }
+    }
+
+    /* Media query para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+        .card {
+            width: 45.5%; /* En pantallas aún más pequeñas, las tarjetas ocupan todo el ancho */
         }
     }
 
@@ -327,7 +333,7 @@
     <!-- Página de Personaje Brauu -->
     <div class="card" onclick="showInfo('modal-brauu')">
         <img src="brauu.png" alt="Imagen de Brauu">
-        <h3>Brauliomaroto</h3>
+        <h3>Brauu</h3>
         <p>Brauu viaja a través de diferentes universos buscando regresar a su línea temporal original.</p>
     </div>
 
