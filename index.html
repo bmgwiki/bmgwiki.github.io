@@ -38,29 +38,41 @@
             margin-left: 2px; /* Separación entre texto y imagen */
         }
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 2rem;
-            animation: containerAnimation 2s ease-in-out;
-        }
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            width: 250px;
-            margin-bottom: 2rem;
-            text-align: center;
-            transform: scale(0.9);
-            opacity: 0;
-            animation: cardAnimation 1s ease-in-out forwards;
-            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-            perspective: 1000px; /* Para el efecto 3D */
-        }
-        .card:hover {
-            transform: scale(1.1) rotateY(10deg) rotateX(10deg); /* Efecto 3D al hacer hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+    animation: containerAnimation 2s ease-in-out;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    width: 200px; /* Tamaño ajustado para 5 por fila */
+    margin-bottom: 2rem;
+    text-align: center;
+    transform: scale(0.9);
+    opacity: 0;
+    animation: cardAnimation 1s ease-in-out forwards;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    perspective: 1000px; /* Para el efecto 3D */
+}
+
+
+
+@media (min-width: 1024px) {
+    .card {
+        width: 18%; /* 5 por fila en pantallas grandes */
+    }
+}
+
+.card:hover {
+    transform: scale(1.1) rotateY(10deg) rotateX(10deg); /* Efecto 3D al hacer hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+        
         .card img {
             width: 100%;
             border-top-left-radius: 8px;
@@ -182,6 +194,34 @@
     opacity: 1;
     transform: scale(1.1) rotate(5deg);
 }
+
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+
+    
+
+    .card img {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Media query para pantallas pequeñas */
+    @media (max-width: 768px) {
+        .card {
+            width: 47%; /* En pantallas más pequeñas, los elementos se ajustan a 2 por fila */
+        }
+    }
 
 
         @keyframes fadeIn {
@@ -393,6 +433,68 @@
     </div>
 </div>
 
+<!-- Página de Personaje Dylancho68 ) -->
+<div class="card" onclick="showInfo('modal-dylancho68')">
+    <img src="dylancho68.png" alt="dyaln">
+    <h3>Dylancho68</h3>
+    <p>Un personaje misterioso, pero con una energía amigable que lo hace especial en el universo BMG...</p>
+</div>
+
+<!-- Modal con más información de Dylancho68 -->
+<div id="modal-dylancho68" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-dylancho68')">&times;</span>
+        <h3>Dylancho68</h3>
+        <p><strong>Altura:</strong> ???</p>
+        <p><strong>Años:</strong> ???</p>
+        <p><strong>Descripción:</strong> A pesar de su misterio, su actitud amigable lo convierte en un personaje interesante para aquellos que lo conocen.</p>
+        <p><strong>Habilidad Especial:</strong> Veloci***d**. Un poder único que le permite moverse con una rapidez sorprendente...</p>
+    </div>
+</div>
+
+<!-- Página de Personaje Thomasrex7 -->
+<div class="card" onclick="showInfo('modal-thomasrex7')">
+    <img src="thomasrex7.png" alt="Thomasrex7">
+    <h3>Thomasrex7</h3>
+    <p>Un chico muy amigable que disfruta conocer a nuevas personas...</p>
+</div>
+
+<!-- Modal con más información de Thomasrex7 -->
+<div id="modal-thomasrex7" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-thomasrex7')">&times;</span>
+        <h3>Thomasrex7</h3>
+        <p><strong>Altura:</strong> 1.68 m</p>
+        <p><strong>Años:</strong> 16</p>
+        <p><strong>Descripción:</strong> Thomasrex7 es un chico muy amigable que disfruta mucho conocer nuevas personas. Le gusta hacer amigos y siempre tiene una sonrisa para todos. En su casa, tiene un poco de todo, ¡su hogar es un lugar único y sorprendente!</p>
+    </div>
+</div>
+
+<!-- Script para abrir y cerrar el modal -->
+<script>
+    function showInfo(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal.style.display === "none" || modal.style.display === "") {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+<!-- Script para abrir y cerrar el modal -->
+<script>
+    function showInfo(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal.style.display === "none" || modal.style.display === "") {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
 
 </div>
 <!-- Sección de Universos Relacionados -->
@@ -519,7 +621,3 @@
 <a href="secret.html">
     <img src="https://th.bing.com/th/id/OIP.RKHCioFfwW3Vau02Sf0crgHaHa?rs=1&pid=ImgDetMain" alt="Logo Raro" class="hidden-corner-logo">
   </a>
-  
-
-
-</html>
