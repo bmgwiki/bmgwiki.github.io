@@ -7,6 +7,7 @@
     <!-- Ícono de la pestaña -->
     <link rel="icon" href="logito.ico" type="image/x-icon">
     <style>
+        
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #f4f4f4;
@@ -166,6 +167,23 @@
             opacity: 0;
             animation: overlayFadeIn 0.3s ease-in-out forwards;
         }
+
+        .hidden-corner-logo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 60px;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.hidden-corner-logo:hover {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+}
+
+
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -297,8 +315,8 @@
             <span class="close" onclick="showInfo('modal-itsAaldotz')">&times;</span>
             <h3>Información de ItsAaldotz</h3>
             <p><strong>Altura:</strong> 1.75m</p>
-            <p><strong>Años:</strong> 17 años</p>
-            <p><strong>Descripción:</strong> ItsAaldotz es conocido por su estilo llamativo y su personalidad divertida. Con sus ojos demasiados grandes, es el alma de cualquier fiesta, ¡y nunca pasa desapercibido!</p>
+            <p><strong>Años:</strong> 18 años</p>
+            <p><strong>Descripción:</strong> ItsAaldotz es conocido por su estilo llamativo y su personalidad divertida. Con sus lentes demasiados grandes, es el alma de cualquier fiesta, ¡y nunca pasa desapercibido!</p>
         </div>
     </div>
 
@@ -321,7 +339,133 @@
         </div>
     </div>
 
+<!-- Página de Personaje Badname -->
+<div class="card" onclick="showInfo('modal-badname')">
+    <img src="badname.png" alt="Imagen de Badname">
+    <h3>Badname</h3>
+    <p>Badname es impredecible, oscuro y directo. Nunca sabes si está de tu lado o no.</p>
 </div>
+
+<!-- Modal con más información de Badname -->
+<div id="modal-badname" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-badname')">&times;</span>
+        <h3>Información de Badname</h3>
+        <p><strong>Altura:</strong> 1.78m</p>
+        <p><strong>Años:</strong> 17 años</p>
+        <p><strong>Descripción:</strong> Badname es un personaje misterioso con una personalidad intensa. A menudo actúa por sus propios intereses, pero su pasado lo persigue en cada decisión que toma.</p>
+    </div>
+</div>
+
+<!-- Página de Personaje Cherry P -->
+<div class="card" onclick="showInfo('modal-cherry')">
+    <img src="cherryp.png" alt="Imagen de Cherry P">
+    <h3>Cherry P</h3>
+    <p>Cherry P es valiente y sarcástica, siempre lista para lanzar comentarios ingeniosos y ayudar cuando más se le necesita.</p>
+</div>
+
+<!-- Modal con más información de Cherry P -->
+<div id="modal-cherry" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-cherry')">&times;</span>
+        <h3>Información de Cherry P</h3>
+        <p><strong>Altura:</strong> 1.65m</p>
+        <p><strong>Años:</strong> 16 años</p>
+        <p><strong>Descripción:</strong> Cherry P es conocida por su actitud desafiante y su valentía en situaciones extremas. Con un estilo rebelde y mente aguda, puede ser tu mejor aliada o tu peor enemiga.</p>
+    </div>
+</div>
+
+<!-- Página de Personaje Ramirezz (SECRETO) -->
+<div class="card" onclick="showInfo('modal-ramirezz')">
+    <img src="secreto.png" alt="Personaje Secreto">
+    <h3>???</h3>
+    <p>Un personaje aún desconocido, pero su presencia se siente en cada rincón del universo BMG...</p>
+</div>
+
+<!-- Modal con más información de Ramirezz -->
+<div id="modal-ramirezz" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-ramirezz')">&times;</span>
+        <h3>Personaje Secreto</h3>
+        <p><strong>Altura:</strong> ???</p>
+        <p><strong>Años:</strong> ???</p>
+        <p><strong>Descripción:</strong> Aún no se sabe mucho sobre este personaje. Solo los más atentos descubrirán su verdadero rol en la historia.</p>
+    </div>
+</div>
+
+
+</div>
+<!-- Sección de Universos Relacionados -->
+<div class="section-title">Universos Relacionados</div>
+<div class="container">
+    
+    <!-- Universo BSMP -->
+    <div class="card" >
+        <img src="bsmp-universe.png" alt="Imagen del Universo BSMP">
+        <h3></h3>
+    </div>
+
+    <!-- Modal del Universo BSMP -->
+    <div id="modal-bsmp" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" >&times;</span>
+        </div>
+    </div>
+
+    <!-- Universo FSMP -->
+    <div class="card" >
+        <img src="fsmp-universe.png" alt="Imagen del Universo FSMP">
+        <h3></h3>
+    </div>
+
+    <!-- Modal del Universo FSMP -->
+    <div id="modal-fsmp" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" >&times;</span>
+        </div>
+    </div>
+
+    <!-- Universo BMG -->
+    <div class="card" >
+        <img src="bmg-universe.png" alt="Imagen del Universo BMG">
+        <h3></h3>
+    </div>
+
+    <!-- Modal del Universo BMG -->
+    <div id="modal-bmg" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" >&times;</span>
+        </div>
+    </div>
+
+    <!-- Universo DMB -->
+    <div class="card" >
+        <img src="dmb-universe.png" alt="Imagen del Universo DMB">
+        <h3></h3>
+    </div>
+
+    <!-- Modal del Universo DMB -->
+    <div id="modal-dmb" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" >&times;</span>
+        </div>
+    </div>
+
+    <!-- Universo MSMP -->
+    <div class="card">
+        <img src="msmp-universe.png" alt="Imagen del Universo MSMP">
+        <h3></h3>
+    </div>
+
+    <!-- Modal del Universo MSMP -->
+    <div id="modal-msmp" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class=>&times;</span>
+        </div>
+    </div>
+
+</div>
+
 
 
 <!-- Sección de Logo Secreto -->
@@ -331,6 +475,8 @@
         <img class="secret-logo" src="xd.png" alt="Logo Secreto">
     </a>
 </div>
+
+
 
 <footer>
     <p>&copy; 2025 Wiki BMG.</p>
@@ -368,4 +514,12 @@
 </script>
 
 </body>
+
+<!-- Logo raro oculto en la esquina -->
+<a href="secret.html">
+    <img src="https://th.bing.com/th/id/OIP.RKHCioFfwW3Vau02Sf0crgHaHa?rs=1&pid=ImgDetMain" alt="Logo Raro" class="hidden-corner-logo">
+  </a>
+  
+
+
 </html>
