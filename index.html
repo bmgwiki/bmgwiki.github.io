@@ -8,6 +8,7 @@
     <link rel="icon" href="logito.ico" type="image/x-icon">
     <style>
         
+
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #f4f4f4;
@@ -216,18 +217,6 @@
         transform: scale(1.05);
     }
 
-    @media (max-width: 768px) {
-        .card {
-            width: 100%; /* En pantallas pequeñas, los elementos se ajustan a 2 por fila */
-        }
-    }
-
-    /* Media query para pantallas muy pequeñas */
-    @media (max-width: 480px) {
-        .card {
-            width: 45.5%; /* En pantallas aún más pequeñas, las tarjetas ocupan todo el ancho */
-        }
-    }
 
 
         @keyframes fadeIn {
@@ -319,15 +308,156 @@
 </head>
 <body>
 
+  
+      <!-- Video y Header -->
+<video class="video" autoplay loop muted playsinline preload="auto">
+    <source src="minecraft.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+
 <header>
     <div class="title-container">
         <h1>Wiki</h1>
         <img src="bmg.png" alt="Logo Wiki Wijki">
     </div>
+
+    <!-- Menú Hamburguesa (visible solo en móvil) -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-icon">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <!-- Menú desplegable (solo móvil) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="#personajes" class="menu-link">Personajes</a>
+    </div>
+
+    <!-- Enlace visible en PC -->
+    <div class="desktop-menu">
+        <a href="#personajes" class="menu-link">Personajes</a>
+    </div>
 </header>
 
+<!-- Estilos -->
+<style>
+    /* Video encima del header */
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    /* Header */
+    header {
+        position: relative;
+        z-index: 6;
+        background-color: rgb(0, 0, 0);
+        padding: 0.6px;
+        text-align: center;
+        margin-top: 50vh;
+    }
+
+    /* Contenedor de logo y título */
+    .title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Menú hamburguesa (solo móvil) */
+    .hamburger-menu {
+        display: none; /* Ocultar por defecto en escritorio */
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        cursor: pointer;
+    }
+
+    .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hamburger-icon .line {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+    }
+
+    /* Menú móvil */
+    .mobile-menu {
+        display: none; /* Ocultarlo por defecto */
+        position: absolute;
+        top: 80px;
+        right: 60px;
+        background-color: black;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .mobile-menu .menu-link {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        margin: 5px 0;
+    }
+
+    /* Enlace en versión de escritorio */
+    .desktop-menu {
+        display: none; /* Ocultarlo por defecto en móvil */
+        position: absolute;
+        top: 30px; /* Justo debajo del logo */
+        right: 600px;
+    }
+
+    .desktop-menu .menu-link {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    /* Mostrar el menú hamburguesa en móvil */
+    @media (max-width: 760px) {
+        .hamburger-menu {
+            display: block;
+        }
+
+        .desktop-menu {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+    }
+
+    /* Mostrar el menú en PC */
+    @media (min-width: 769px) {
+        .hamburger-menu {
+            display: none;
+        }
+
+        .desktop-menu {
+            display: block;
+        }
+    }
+</style>
+
+
+
+
+      
 <!-- Sección de Personajes -->
-<div class="section-title">Personajes</div>
+<div id="personajes" class="section-title">Personajes</div>
 <div class="container">
     
     <!-- Página de Personaje Brauu -->
@@ -352,7 +482,7 @@
     <div class="card" onclick="showInfo('modal-itsAaldotz')">
         <img src="aldo.png" alt="Imagen de ItsAaldotz">
         <h3>ItsAaldotz</h3>
-        <p>ItsAaldotz es conocido por su estilo llamativo y personalidad divertida, Con su color amarillo y lentes gigantes.</p>
+        <p>ItsAaldotz es conocido por su estilo llamativo y personalidad divertida. Con su color amarillo y lentes gigantes, siempre está listo para aportar algo único al universo BMG.</p>
     </div>
 
     <!-- Modal con más información de ItsAaldotz -->
@@ -371,7 +501,7 @@
         <img src="quality.png" alt="Imagen de Quality_forever_">
 
         <h3>Quality</h3>
-        <p>Quality es conocido por su estilo épico y su actitud positiva.</p>
+        <p>Quality_forever_ es conocido por su estilo épico y su actitud positiva. Siempre está dispuesto a enfrentar cualquier desafío con determinación.</p>
     </div>
 
     <!-- Modal con más información de Quality_forever_ -->
@@ -501,6 +631,22 @@
     }
 </script>
 
+<!-- Script para abrir y cerrar el menú hamburguesa -->
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('active');
+    }
+
+    function showInfo(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal.style.display === "none" || modal.style.display === "") {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </div>
 <!-- Sección de Universos Relacionados -->
@@ -623,7 +769,7 @@
 
 </body>
 
-<!-- Logo raro oculto en la esquina -->
+<!-- Logo  -->
 <a href="secret.html">
     <img src="https://th.bing.com/th/id/OIP.RKHCioFfwW3Vau02Sf0crgHaHa?rs=1&pid=ImgDetMain" alt="Logo Raro" class="hidden-corner-logo">
   </a>
