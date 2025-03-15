@@ -46,6 +46,65 @@
     animation: containerAnimation 2s ease-in-out;
 }
 
+/* Estilos generales de los enlaces */
+.menu-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 0 -1rem;
+    font-family: 'Courier New', Courier, monospace; /* fuente */
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 15px 15px;
+    border-radius: 2px;
+}
+
+/* Efecto hover para los enlaces */
+.menu-link:hover {
+    background-color: #2c2931; /* Morado Twitch o puedes usar azul */
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(100, 65, 165, 0.5); /* Sombra azul/morado */
+}
+
+/* Menú móvil (solo visible en pantallas pequeñas) */
+.mobile-menu {
+    display: none; /* Se muestra solo en móvil */
+}
+
+.hamburger-menu {
+    display: block; /* Muestra el icono de menú hamburguesa en móvil */
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+        background-color: #333;
+        padding: 1rem;
+    }
+    .desktop-menu {
+        display: none; /* Oculta el menú de escritorio en móvil */
+    }
+}
+
+/* Menú de escritorio (solo visible en pantallas grandes) */
+.desktop-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none; /* Oculta el menú móvil en pantallas grandes */
+    }
+    .desktop-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
 .card {
     background-color: white;
     border-radius: 8px;
@@ -332,12 +391,14 @@
 
     <!-- Menú desplegable (solo móvil) -->
     <div id="mobile-menu" class="mobile-menu">
-        <a href="#personajes" class="menu-link">Personajes</a>
+        <a href="#personajes" class="menu-link">Personajes</a> 
+        <a href="fanarts.html" class="menu-link">Fanarts</a> <!-- Enlace a otra página -->
     </div>
 
     <!-- Enlace visible en PC -->
     <div class="desktop-menu">
         <a href="#personajes" class="menu-link">Personajes</a>
+        <a href="fanarts.html" class="menu-link">Fanarts</a> <!-- Enlace a otra página -->
     </div>
 </header>
 
@@ -565,7 +626,7 @@
         <h3>Personaje Secreto</h3>
         <p><strong>Altura:</strong> ???</p>
         <p><strong>Años:</strong> ???</p>
-        <p><strong>Descripción:</strong> Aún no se sabe mucho sobre este personaje. Solo los más atentos descubrirán su verdadero rol en la historia.</p>
+        <p><strong>Descripción:</strong> Aún no se sabe mucho sobre este personaje. Solo los más atentos descubrirán su verdadero rol en la historia.
     </div>
 </div>
 
@@ -605,6 +666,43 @@
         <p><strong>Descripción:</strong> Thomasrex7 es un chico muy amigable que disfruta mucho conocer nuevas personas. Le gusta hacer amigos y siempre tiene una sonrisa para todos. En su casa, tiene un poco de todo, ¡su hogar es un lugar único y sorprendente!</p>
     </div>
 </div>
+
+<!-- Página de Personaje Brai -->
+<div class="card" onclick="showInfo('modal-brai')">
+    <img src="brai.png" alt="Brai">
+    <h3>Brai</h3>
+    <p>..- -. .- / ...- . .-. ... .. ---. -. / --- ... -.-. ..- .-. .- / -.. . / -... .-. .- ..- ..- .-.-.-</p>
+</div>
+
+<!-- Modal con más información de Brai -->
+<div id="modal-brai" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-brai')">&times;</span>
+        <h3>Brai</h3>
+        <p><strong>Altura:</strong> 1.70 m</p>
+        <p><strong>Años:</strong> 16</p>
+        <p><strong>Descripción:</strong> Brai es la versión malvada de Brauu, nacida cuando este viajó al pasado. En esa línea temporal, Brauu se vio obligado a matar a su yo del pasado... dejándolo sin vidas. Pero el destino no acabó ahí. En Las Nevadas, Brai resurgió con una última vida, un ojo morado lleno de rencor, y una gran mancha de sangre que jamás se ha lavado. Ahora camina con sed de venganza, buscando a quien lo traicionó: a sí mismo.</p>
+    </div>
+</div>
+
+<!-- Página de Personaje Secreto -->
+<div class="card" onclick="showInfo('modal-secreto')">
+    <img src="secreto.png" alt="Personaje Secreto">
+    <h3>???</h3>
+    <p>Un personaje aún desconocido, pero su presencia se siente en cada rincón del universo BMG...</p>
+</div>
+
+<!-- Modal con más información del Personaje Secreto -->
+<div id="modal-secreto" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="showInfo('modal-secreto')">&times;</span>
+        <h3>Personaje Secreto</h3>
+        <p><strong>Altura:</strong> ???</p>
+        <p><strong>Años:</strong> ???</p>
+        <p><strong>Descripción:</strong> Nadie sabe realmente quién es. Su historia está oculta, su rostro es desconocido, pero quienes han sentido su presencia aseguran haber visto una sola letra antes de que todo se apagara: <strong>E</strong>.</p>
+    </div>
+</div>
+
 
 <!-- Script para abrir y cerrar el modal -->
 <script>
@@ -773,3 +871,4 @@
 <a href="secret.html">
     <img src="https://th.bing.com/th/id/OIP.RKHCioFfwW3Vau02Sf0crgHaHa?rs=1&pid=ImgDetMain" alt="Logo Raro" class="hidden-corner-logo">
   </a>
+  
